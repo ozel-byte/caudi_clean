@@ -131,7 +131,9 @@ class _SliderOneState extends State<SliderOne> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, 'slierThree');
+                },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
