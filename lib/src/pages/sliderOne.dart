@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class SliderOne extends StatefulWidget {
   @override
@@ -15,7 +14,6 @@ class _SliderOneState extends State<SliderOne> {
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
   final Shader _gradientLogo = LinearGradient(
@@ -172,9 +170,7 @@ class _SliderOneState extends State<SliderOne> {
   }
 
   Widget institucionesAgua() {
-    return WebView(
-      initialUrl: "https://www.reshot.com/",
-    );
+    return Container();
   }
 
   Widget wavesAnimation(Size size) {
