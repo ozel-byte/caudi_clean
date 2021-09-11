@@ -12,7 +12,7 @@ class SLiderThree extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Icon(
-          Icons.arrow_back_ios,
+          Icons.arrow_back_rounded,
           color: Colors.black,
         ),
         elevation: 0.0,
@@ -40,13 +40,12 @@ class SLiderThree extends StatelessWidget {
       body: Container(
         width: size.width * 1,
         height: size.height * 1,
-        color: Colors.amber[200],
         child: ListView(
           padding: EdgeInsets.only(top: 50, left: 0),
           children: [
             ListTile(
               title: Text(
-                "Instrucciones",
+                "Lista de Tareas",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
@@ -55,17 +54,28 @@ class SLiderThree extends StatelessWidget {
                 Icons.check_circle,
                 color: Colors.blue,
               ),
-              title: Text("Te asignaré una lista de tareas."),
+              title: Text(
+                  "Determina el cuerpo de agua al que se descargarán las aguas residuales."),
+            ),
+            ListTile(
+              leading: Icon(Icons.check_circle, color: Colors.blue),
+              title:
+                  Text("Ordena correctamente los procesos de pretratamiento."),
             ),
             ListTile(
               leading: Icon(Icons.check_circle, color: Colors.blue),
               title: Text(
-                  "Realiza las tareas correctamente para obtener un agua tratada y limpia. De no ser así, pierdes el juego."),
+                  "Especifica dónde se lleva a cabo el tratamiento primario."),
             ),
             ListTile(
               leading: Icon(Icons.check_circle, color: Colors.blue),
               title: Text(
-                  "Podrás ver tus resultados al finalizar el tratamiento."),
+                  "Selecciona las palabras relacionadas con el tratamiento secundario."),
+            ),
+            ListTile(
+              leading: Icon(Icons.check_circle, color: Colors.blue),
+              title: Text(
+                  "Ordena correctamente los procesos del tratamiento terciario."),
             ),
             SizedBox(
               height: 10,

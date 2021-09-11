@@ -109,9 +109,11 @@ class _SliderTwoState extends State<SliderTwo> {
                           EdgeInsets.symmetric(vertical: 15)),
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "slierThree");
+                  },
                   child: Text(
-                    "Jugar",
+                    "Siguiente",
                     style: TextStyle(color: Colors.white),
                   )),
             )
