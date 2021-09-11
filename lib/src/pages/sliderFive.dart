@@ -5,8 +5,18 @@ class SLiderFive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: null,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Hola paps"),
+      ),
+      body: Column(
+        children: [
+          Text(
+            "Hola pa",
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }
