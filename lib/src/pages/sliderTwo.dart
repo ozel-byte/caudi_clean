@@ -6,6 +6,7 @@ class SliderTwo extends StatefulWidget {
 }
 
 int select = 0;
+Icon iconInicio = Icon(Icons.arrow_forward);
 
 class _SliderTwoState extends State<SliderTwo> {
   @override
@@ -20,14 +21,23 @@ class _SliderTwoState extends State<SliderTwo> {
           ),
           backgroundColor: Colors.white,
           elevation: 0.0,
-          leading: Icon(
-            Icons.arrow_back_rounded,
-            color: Colors.black,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, '/');
+            },
           ),
         ),
         body: ListView(
           padding: EdgeInsets.only(top: size.height * 0.1),
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.arrow_back),
+                Icon(Icons.arrow_forward),
+              ],
+            ),
             Container(
               width: size.width * 1,
               height: size.height * 0.2,
@@ -55,15 +65,15 @@ class _SliderTwoState extends State<SliderTwo> {
                       setState(() {});
                     },
                     child: Container(
-                        width: size.width * 1,
-                        height: size.height * 1,
-                        decoration: BoxDecoration(
-                            border: Border.fromBorderSide(BorderSide(
-                                color:
-                                    select == 2 ? Colors.green : Colors.white,
-                                width: 3))),
-                        child: Image(
-                            image: AssetImage("assets/male-mechanic.png"))),
+                      width: size.width * 1,
+                      height: size.height * 1,
+                      decoration: BoxDecoration(
+                          border: Border.fromBorderSide(BorderSide(
+                              color: select == 2 ? Colors.green : Colors.white,
+                              width: 3))),
+                      child:
+                          Image(image: AssetImage("assets/male-mechanic.png")),
+                    ),
                   ),
                 ],
               ),
