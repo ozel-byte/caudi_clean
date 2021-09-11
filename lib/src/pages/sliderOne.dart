@@ -12,7 +12,11 @@ class SliderOne extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
-        children: [logo(size), botonesInfo(size), wavesAnimation(size)],
+        children: [
+          logo(size),
+          botonesInfo(size, context),
+          wavesAnimation(size)
+        ],
       ),
     );
   }
@@ -66,7 +70,7 @@ class SliderOne extends StatelessWidget {
     );
   }
 
-  Widget botonesInfo(Size size) {
+  Widget botonesInfo(Size size, BuildContext context) {
     return Container(
       width: size.width * 1,
       height: size.height * 0.35,
@@ -76,7 +80,9 @@ class SliderOne extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, 'sliderTwo');
+                },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
@@ -150,6 +156,8 @@ class SliderOne extends StatelessWidget {
     return Container(
       width: size.width * 1,
       height: size.height * 0.3,
+      color: Colors.amber[200],
+      child: Stack(),
     );
   }
 }
