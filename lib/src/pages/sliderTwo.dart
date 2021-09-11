@@ -1,87 +1,167 @@
 import 'package:flutter/material.dart';
 
-/*Container(
-            margin: EdgeInsets.symmetric(vertical: 60),
-            child: Column(
-              children: [
-                Text(
-                  'Elige un Asesor:',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                )
-              ],
-            ),
-          ),*/
+class SliderTwo extends StatefulWidget {
+  @override
+  _SliderTwoState createState() => _SliderTwoState();
+}
 
-class SliderTwo extends StatelessWidget {
+int select = 0;
+
+class _SliderTwoState extends State<SliderTwo> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 60, horizontal: 10),
-                child: Text(
-                  'Elige un Asesor:',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                ),
-              ),
-            ],
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text(
+            "Elige un Asesor",
+            style: TextStyle(color: Colors.black),
           ),
-          asesor(size),
-        ],
-      ),
-    );
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.black,
+          ),
+        ),
+        body: ListView(
+          padding: EdgeInsets.only(top: size.height * 0.1),
+          children: [
+            Container(
+              width: size.width * 1,
+              height: size.height * 0.2,
+              child: PageView(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      select = 1;
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: size.width * 1,
+                      height: size.height * 1,
+                      decoration: BoxDecoration(
+                          border: Border.fromBorderSide(BorderSide(
+                              color: select == 1 ? Colors.blue : Colors.white,
+                              width: 3))),
+                      child: Image(
+                          image: AssetImage("assets/female-mechanic.png")),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      select = 2;
+                      setState(() {});
+                    },
+                    child: Container(
+                        width: size.width * 1,
+                        height: size.height * 1,
+                        decoration: BoxDecoration(
+                            border: Border.fromBorderSide(BorderSide(
+                                color:
+                                    select == 2 ? Colors.green : Colors.white,
+                                width: 3))),
+                        child: Image(
+                            image: AssetImage("assets/male-mechanic.png"))),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: TextField(
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    labelText: 'Nombre',
+                    hintText: 'Ingrese su nombre'),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: TextButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(vertical: 15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff22ADCC))),
+                  onPressed: () {
+                    _ventanaInstruciones(context, size);
+                  },
+                  child: Text("Como jugar",
+                      style: TextStyle(color: Colors.white))),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: TextButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(vertical: 15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff22ADCC))),
+                  onPressed: () {},
+                  child: Text(
+                    "Jugar",
+                    style: TextStyle(color: Colors.white),
+                  )),
+            )
+          ],
+        ));
   }
 
-  Widget asesor(Size size) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    Text(
-                      'Ingrese un nombre de usuario',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                      ),
+  Future<void> _ventanaInstruciones(BuildContext context, Size size) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Instrucciones"),
+            content: Container(
+              width: size.width * 1,
+              height: size.height * 0.3,
+              child: ListView(
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      Icons.check_circle,
+                      color: Colors.blue,
                     ),
-                  ],
-                ),
+                    title: Text("Te asignaré una lista de tareas."),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.check_circle, color: Colors.blue),
+                    title: Text(
+                        "Realiza las tareas correctamente para obtener un agua tratada y limpia. De no ser así, pierdes el juego."),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.check_circle, color: Colors.blue),
+                    title: Text(
+                        "Podrás ver tus resultados al finalizar el tratamiento."),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    Text(
-                      "Aqui va imagen",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Aceptar'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
             ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Jugar')],
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 }
