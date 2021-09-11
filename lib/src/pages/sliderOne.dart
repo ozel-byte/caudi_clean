@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class SliderOne extends StatelessWidget {
   final _styleDescription = TextStyle(color: Color(0xffA2A2A4));
@@ -156,8 +158,26 @@ class SliderOne extends StatelessWidget {
     return Container(
       width: size.width * 1,
       height: size.height * 0.3,
-      color: Colors.amber[200],
-      child: Stack(),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          WaveWidget(
+              config: CustomConfig(
+                gradients: [
+                  [Colors.blue, Color(0xff2BA5C0)],
+                  [Colors.blue, Color(0xff2FB0CC)],
+                  [Colors.blue, Color(0xff048cc0)],
+                  [Colors.blue, Color(0xff445cbb)]
+                ],
+                durations: [35000, 19440, 10800, 6000],
+                heightPercentages: [0.20, 0.23, 0.25, 0.30],
+                blur: MaskFilter.blur(BlurStyle.solid, 5),
+                gradientBegin: Alignment.bottomLeft,
+                gradientEnd: Alignment.topRight,
+              ),
+              size: Size(size.width * 1, size.height * 0.1))
+        ],
+      ),
     );
   }
 }
