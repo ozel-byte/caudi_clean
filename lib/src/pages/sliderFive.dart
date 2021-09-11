@@ -12,7 +12,7 @@ class SLiderFive extends StatelessWidget {
       body: Column(
         children: [
           Text(
-            "Hola pa",
+            "Hola paaaaa",
             textAlign: TextAlign.center,
           )
         ],
