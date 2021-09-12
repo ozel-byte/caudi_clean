@@ -10,6 +10,7 @@ class ViewPagePasoFour extends StatefulWidget {
 
 List<String> items = ["Filtración", "Desinfección", "Decantación"];
 int selectitem = 0;
+int count = 0;
 
 class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
   @override
@@ -98,7 +99,10 @@ class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Icon(Icons.mood_rounded),
+                                    Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                    ),
                                     Text(items[index]),
                                   ],
                                 ))),
@@ -112,7 +116,7 @@ class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Icon(Icons.mood_rounded),
+                                    Icon(Icons.format_list_bulleted),
                                     Text(items[index]),
                                   ],
                                 ))),
@@ -146,6 +150,17 @@ class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
                   onPressed: () {
+                    if (items[0] == "Decantación") {
+                      count += 10;
+                    }
+                    if (items[1] == "Filtración") {
+                      count += 10;
+                    }
+                    if (items[2] == "Desinfección") {
+                      count += 10;
+                    }
+                    user.countpuntos = user.getPuntos + count;
+                    setState(() {});
                     Navigator.popAndPushNamed(context, 'viewPageFinal',
                         arguments: user);
                   },
