@@ -17,12 +17,12 @@ class Username {
     return username;
   }
 
-  set countpuntos(int puntos) {
-    puntos = puntos;
+  set countpuntos(int _puntos) {
+    puntos = _puntos;
   }
 
-  get getPuntos {
-    return puntos;
+  int get getPuntos {
+    return this.puntos;
   }
 
   get getAvatar {

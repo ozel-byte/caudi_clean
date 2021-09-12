@@ -74,7 +74,7 @@ class ViewPageFinal extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, 'viewPageFinal');
+                    Navigator.popAndPushNamed(context, '/');
                   },
                   child: Text(
                     "Inicio",

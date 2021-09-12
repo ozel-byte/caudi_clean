@@ -9,6 +9,10 @@ class ViewPagePasoTwo extends StatefulWidget {
 }
 
 bool? _check = false;
+bool? _checkTwo = false;
+bool? _checkThree = false;
+bool? _checkFour = false;
+bool? _checkFive = false;
 
 class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
   @override
@@ -58,11 +62,11 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
           Column(
             children: [
               Text(
-                "Pretratamiento.",
+                "Tratamiento primario",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Text(
-                "¿Qué va primero?",
+                "¿Dónde se lleva a cabo?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Container(
@@ -72,7 +76,7 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                   padding: EdgeInsets.only(top: 20),
                   children: [
                     CheckboxListTile(
-                      title: Text('Opcion1'),
+                      title: Text('Licuadora'),
                       value: _check,
                       onChanged: (select) {
                         _check = select;
@@ -81,37 +85,37 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                     CheckboxListTile(
-                      title: Text('Opcion2'),
-                      value: _check,
+                      title: Text('Tamiz'),
+                      value: _checkTwo,
                       onChanged: (select) {
-                        _check = select;
+                        _checkTwo = select;
                         setState(() {});
                       },
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                     CheckboxListTile(
-                      title: Text('Opcion3'),
-                      value: _check,
+                      title: Text('Redes finas'),
+                      value: _checkThree,
                       onChanged: (select) {
-                        _check = select;
+                        _checkThree = select;
                         setState(() {});
                       },
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                     CheckboxListTile(
-                      title: Text('Opcion4'),
-                      value: _check,
+                      title: Text('Redes gruesas'),
+                      value: _checkFour,
                       onChanged: (select) {
-                        _check = select;
+                        _checkFour = select;
                         setState(() {});
                       },
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                     CheckboxListTile(
-                      title: Text('Opcion5'),
-                      value: _check,
+                      title: Text('Decantador'),
+                      value: _checkFive,
                       onChanged: (select) {
-                        _check = select;
+                        _checkFive = select;
                         setState(() {});
                       },
                       controlAffinity: ListTileControlAffinity.leading,
@@ -128,9 +132,20 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                           EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, 'viewPagePasoThree',arguments: user);
-                  },
+                  onPressed: _check == true ||
+                          _checkTwo == true ||
+                          _checkThree == true ||
+                          _checkFour == true ||
+                          _checkFive == true
+                      ? () {
+                          if (_checkFive == true) {
+                            user.countpuntos = user.getPuntos + 10;
+                          }
+                          Navigator.popAndPushNamed(
+                              context, 'viewPagePasoThree',
+                              arguments: user);
+                        }
+                      : null,
                   child: Text(
                     "Continuar",
                     style: TextStyle(color: Colors.white),
@@ -138,6 +153,14 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff22ADCC),
+        onPressed: () {},
+        child: Text(
+          user.getPuntos.toString(),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }

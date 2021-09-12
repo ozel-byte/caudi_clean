@@ -54,12 +54,12 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
           Column(
             children: [
               Text(
-                "Tratamiento primario",
+                "Tratamiento secundario",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Text(
-                "¿Dónde se lleva a cabo?",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                "¿Ya sabes cuáles son las 3 palabras clave?",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(
                 height: 20,
@@ -157,6 +157,14 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff22ADCC),
+        onPressed: () {},
+        child: Text(
+          user.getPuntos.toString(),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }

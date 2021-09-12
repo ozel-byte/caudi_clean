@@ -1,17 +1,32 @@
 import 'package:caudiclean/src/model/username.dart';
 import 'package:flutter/material.dart';
 
-class ViewPagePasoOne extends StatelessWidget {
+class ViewPagePasoOne extends StatefulWidget {
+  @override
+  _ViewPagePasoOneState createState() => _ViewPagePasoOneState();
+}
+
+class _ViewPagePasoOneState extends State<ViewPagePasoOne> {
   final _style = new TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+
   TextEditingController _controllerOne = TextEditingController();
+
   TextEditingController _controllerTwo = TextEditingController();
+
   TextEditingController _controllerThree = TextEditingController();
+
   TextEditingController _controllerFour = TextEditingController();
 
   String _nameOne = "";
+
   String _nameTwo = "";
+
   String _nameThree = "";
+
   String _nameFour = "";
+
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -85,6 +100,10 @@ class ViewPagePasoOne extends StatelessWidget {
                           ),
                           TextField(
                             controller: _controllerOne,
+                            onChanged: (value) {
+                              _nameOne = value;
+                              setState(() {});
+                            },
                             decoration: InputDecoration(hintText: 'escribe'),
                           )
                         ],
@@ -97,11 +116,15 @@ class ViewPagePasoOne extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "Desabasto",
+                            "Desbaste",
                             style: _style,
                           ),
                           TextField(
                             controller: _controllerTwo,
+                            onChanged: (value) {
+                              _nameTwo = value;
+                              setState(() {});
+                            },
                             decoration: InputDecoration(hintText: 'escribe'),
                           )
                         ],
@@ -119,6 +142,10 @@ class ViewPagePasoOne extends StatelessWidget {
                           ),
                           TextField(
                             controller: _controllerThree,
+                            onChanged: (value) {
+                              _nameThree = value;
+                              setState(() {});
+                            },
                             decoration: InputDecoration(hintText: 'escribe'),
                           )
                         ],
@@ -141,6 +168,10 @@ class ViewPagePasoOne extends StatelessWidget {
                       ),
                       TextField(
                         controller: _controllerFour,
+                        onChanged: (value) {
+                          _nameFour = value;
+                          setState(() {});
+                        },
                         decoration: InputDecoration(hintText: 'escribe'),
                       )
                     ],
@@ -159,10 +190,36 @@ class ViewPagePasoOne extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 80, vertical: 20)),
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, 'viewPagePasoTwo',
-                        arguments: user);
-                  },
+                  onPressed: _nameOne.length > 0 &&
+                          _nameTwo.length > 0 &&
+                          _nameThree.length > 0 &&
+                          _nameFour.length > 0
+                      ? () {
+                          print("llego hasta aqui");
+                          if (_nameOne == "3") {
+                            count += 10;
+                            print("entro aqui 1");
+                          }
+                          if (_nameTwo == "1") {
+                            count += 10;
+                            print("entro aqui 2");
+                          }
+                          if (_nameThree == "2") {
+                            count += 10;
+                            print("entro aqui 3");
+                          }
+                          if (_nameFour == "4") {
+                            count += 10;
+                            print("entro aqui 4");
+                          }
+
+                          setState(() {});
+                          user.countpuntos = count;
+                          print(user.getPuntos);
+                          Navigator.popAndPushNamed(context, 'viewPagePasoTwo',
+                              arguments: user);
+                        }
+                      : null,
                   child: Text(
                     "Siguiente",
                     style: TextStyle(color: Colors.white),
@@ -172,16 +229,5 @@ class ViewPagePasoOne extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  validacionPuntos(BuildContext context) {
-    if (_nameOne.isNotEmpty &&
-        _nameTwo.isNotEmpty &&
-        _nameThree.isNotEmpty &&
-        _nameFour.isNotEmpty) {
-      return Navigator.popAndPushNamed(context, 'viewPagePasoTwo');
-    } else {
-      return null;
-    }
   }
 }
