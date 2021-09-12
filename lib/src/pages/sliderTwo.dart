@@ -31,121 +31,124 @@ class _SliderTwoState extends State<SliderTwo> {
             },
           ),
         ),
-        body: ListView(
-          padding: EdgeInsets.only(top: size.height * 0.1),
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.arrow_back),
-                Icon(Icons.arrow_forward),
-              ],
-            ),
-            Container(
-              width: size.width * 1,
-              height: size.height * 0.2,
-              child: PageView(
+        body: SingleChildScrollView(
+          child: ListView(
+            padding: EdgeInsets.only(top: size.height * 0.1),
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      select = 1;
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: size.width * 1,
-                      height: size.height * 1,
-                      decoration: BoxDecoration(
-                          border: Border.fromBorderSide(BorderSide(
-                              color: select == 1 ? Colors.blue : Colors.white,
-                              width: 3))),
-                      child: Image(
-                          image: AssetImage("assets/female-mechanic.png")),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      select = 2;
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: size.width * 1,
-                      height: size.height * 1,
-                      decoration: BoxDecoration(
-                          border: Border.fromBorderSide(BorderSide(
-                              color: select == 2 ? Colors.green : Colors.white,
-                              width: 3))),
-                      child:
-                          Image(image: AssetImage("assets/male-mechanic.png")),
-                    ),
-                  ),
+                  Icon(Icons.arrow_back),
+                  Icon(Icons.arrow_forward),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextField(
-                controller: _controller,
-                onChanged: (value) {
-                  setState(() {
-                    username = value;
-                  });
-                },
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    labelText: 'Nombre',
-                    hintText: 'Ingrese su nombre'),
+              Container(
+                width: size.width * 1,
+                height: size.height * 0.2,
+                child: PageView(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        select = 1;
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: size.width * 1,
+                        height: size.height * 1,
+                        decoration: BoxDecoration(
+                            border: Border.fromBorderSide(BorderSide(
+                                color: select == 1 ? Colors.blue : Colors.white,
+                                width: 3))),
+                        child: Image(
+                            image: AssetImage("assets/female-mechanic.png")),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        select = 2;
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: size.width * 1,
+                        height: size.height * 1,
+                        decoration: BoxDecoration(
+                            border: Border.fromBorderSide(BorderSide(
+                                color:
+                                    select == 2 ? Colors.green : Colors.white,
+                                width: 3))),
+                        child: Image(
+                            image: AssetImage("assets/male-mechanic.png")),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 15)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {
-                    _ventanaInstruciones(context, size);
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: TextField(
+                  controller: _controller,
+                  onChanged: (value) {
+                    setState(() {
+                      username = value;
+                    });
                   },
-                  child: Text("Como jugar",
-                      style: TextStyle(color: Colors.white))),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 15)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: username.isEmpty == true || select == 0
-                      ? null
-                      : () {
-                          String avatar = select == 1
-                              ? "assets/female-mechanic.png"
-                              : "assets/male-mechanic.png";
-                          String genero = select == 1 ? "F" : "M";
-                          Username user =
-                              new Username(username, 0, avatar, genero);
-                          Navigator.popAndPushNamed(context, "slierThree",
-                              arguments: user);
-                        },
-                  child: Text(
-                    "Siguiente",
-                    style: TextStyle(color: Colors.white),
-                  )),
-            )
-          ],
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      labelText: 'Nombre',
+                      hintText: 'Ingrese su nombre'),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: TextButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 15)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xff22ADCC))),
+                    onPressed: () {
+                      _ventanaInstruciones(context, size);
+                    },
+                    child: Text("Como jugar",
+                        style: TextStyle(color: Colors.white))),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: TextButton(
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 15)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xff22ADCC))),
+                    onPressed: username.isEmpty == true || select == 0
+                        ? null
+                        : () {
+                            String avatar = select == 1
+                                ? "assets/female-mechanic.png"
+                                : "assets/male-mechanic.png";
+                            String genero = select == 1 ? "F" : "M";
+                            Username user =
+                                new Username(username, 0, avatar, genero);
+                            Navigator.popAndPushNamed(context, "slierThree",
+                                arguments: user);
+                          },
+                    child: Text(
+                      "Siguiente",
+                      style: TextStyle(color: Colors.white),
+                    )),
+              )
+            ],
+          ),
         ));
   }
 
