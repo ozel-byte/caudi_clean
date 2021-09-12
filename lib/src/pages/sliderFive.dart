@@ -1,12 +1,15 @@
+import 'package:caudiclean/main.dart';
 import 'package:caudiclean/src/model/username.dart';
+import 'package:caudiclean/src/states/instanciaUsername.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SLiderFive extends StatelessWidget {
+class SLiderFive extends ConsumerWidget {
   const SLiderFive({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    Username user = ModalRoute.of(context)!.settings.arguments as Username;
+  Widget build(BuildContext context, ScopedReader watch) {
+    InstanciaUsernameState user = watch(instanciaUsernameState.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -15,8 +18,8 @@ class SLiderFive extends StatelessWidget {
         actions: [
           CircleAvatar(
             backgroundColor:
-                user.getGenero == "F" ? Colors.amber[100] : Colors.blue[100],
-            backgroundImage: AssetImage(user.getAvatar),
+                user.generoValue == "F" ? Colors.amber[100] : Colors.blue[100],
+            backgroundImage: AssetImage(user.avatarValue),
           ),
           SizedBox(
             width: 10,
@@ -29,7 +32,7 @@ class SLiderFive extends StatelessWidget {
               color: Colors.black,
             )),
         title: Text(
-          "Hola de nuevo " + user.getUsername,
+          "Hola de nuevo " + user.usernameValue,
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -153,8 +156,7 @@ class SLiderFive extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Navigator.popAndPushNamed(context, "sliderSix",
-                              arguments: user);
+                          Navigator.popAndPushNamed(context, "sliderSix");
                         },
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(

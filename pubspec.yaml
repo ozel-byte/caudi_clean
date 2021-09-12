@@ -31,8 +31,8 @@ dependencies:
   wave: ^0.2.0
   roundcheckbox: ^2.0.2+1
   animate_do: ^2.0.0
-  
-  
+  flutter_riverpod: ^0.14.0+3
+  page_transition: ^2.0.2
 
 dev_dependencies:
   flutter_test:

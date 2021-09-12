@@ -6,7 +6,6 @@ class SliderSix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Username user = ModalRoute.of(context)!.settings.arguments as Username;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -48,8 +47,7 @@ class SliderSix extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Navigator.popAndPushNamed(context, 'viewPagePasoOne',
-                              arguments: user);
+                          Navigator.popAndPushNamed(context, 'viewPagePasoOne');
                         },
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(

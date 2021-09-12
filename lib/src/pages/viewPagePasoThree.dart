@@ -1,28 +1,33 @@
+import 'package:caudiclean/main.dart';
 import 'package:caudiclean/src/model/username.dart';
+import 'package:caudiclean/src/states/instanciaUsername.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ViewPagePasoThree extends StatefulWidget {
-  const ViewPagePasoThree({Key? key}) : super(key: key);
-
-  @override
-  _ViewPagePasoThreeState createState() => _ViewPagePasoThreeState();
-}
-
-class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
-  bool _checkOne = false;
-  bool _checkTwo = false;
-  bool _checkThree = false;
-  bool _checkFour = false;
-  bool _checkFive = false;
-  bool _checkSix = false;
-  bool _checkSeven = false;
-  bool _checkEight = false;
-  int count = 0;
+class ViewPagePasoThree extends ConsumerWidget {
+  final items = [
+    "Biologico",
+    "Destilacion",
+    "Disolucion",
+    "Desengrasado",
+    "Desarenado",
+    "Aplicacion de oxigeno",
+    "Clarificacion",
+    "Sanitizacion"
+  ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final size = MediaQuery.of(context).size;
-    Username user = ModalRoute.of(context)!.settings.arguments as Username;
+    InstanciaUsernameState user = watch(instanciaUsernameState.notifier);
+    final checkOne = watch(checkOneState);
+    final checkTwo = watch(checkTwoState);
+    final checkThree = watch(checkThreeState);
+    final checkFour = watch(checkFourState);
+    final checkFive = watch(checkFiveState);
+    final checkSix = watch(checkSixState);
+    final checkSevne = watch(checkSevenState);
+    final checkEight = watch(checkEightState);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -30,17 +35,17 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
           Row(
             children: [
               Text(
-                "Ing " + user.getUsername,
+                "Ing " + user.usernameValue,
                 style: TextStyle(color: Colors.black),
               ),
               SizedBox(
                 width: 10,
               ),
               CircleAvatar(
-                backgroundColor: user.getGenero == "F"
+                backgroundColor: user.generoValue == "F"
                     ? Colors.amber[100]
                     : Colors.blue[100],
-                backgroundImage: AssetImage(user.getAvatar),
+                backgroundImage: AssetImage(user.avatarValue),
               ),
               SizedBox(
                 width: 10,
@@ -83,82 +88,17 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
                   width: size.width * 1,
                   height: size.height * 0.5,
                   child: ListView(
-                    padding: EdgeInsets.only(top: 20),
-                    children: [
-                      CheckboxListTile(
-                        title: Text('Bioligico'),
-                        value: _checkOne,
-                        onChanged: (select) {
-                          _checkOne = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Destilacion'),
-                        value: _checkTwo,
-                        onChanged: (select) {
-                          _checkTwo = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Disolucion'),
-                        value: _checkThree,
-                        onChanged: (select) {
-                          _checkThree = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Desengrasado'),
-                        value: _checkFour,
-                        onChanged: (select) {
-                          _checkFour = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Desarenado'),
-                        value: _checkFive,
-                        onChanged: (select) {
-                          _checkFive = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Aplicacion de oxigeno'),
-                        value: _checkSix,
-                        onChanged: (select) {
-                          _checkSix = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Clarificacion'),
-                        value: _checkSeven,
-                        onChanged: (select) {
-                          _checkSeven = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                      CheckboxListTile(
-                        title: Text('Sanitizacion'),
-                        value: _checkEight,
-                        onChanged: (select) {
-                          _checkEight = select!;
-                          setState(() {});
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ],
-                  ),
+                      padding: EdgeInsets.only(top: 20),
+                      children: listItemCheck(
+                          checkOne,
+                          checkTwo,
+                          checkThree,
+                          checkFour,
+                          checkFive,
+                          checkSix,
+                          checkSevne,
+                          checkEight,
+                          context)),
                 ),
                 SizedBox(
                   height: 20,
@@ -169,29 +109,48 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
                             horizontal: 100, vertical: 20)),
                         backgroundColor:
                             MaterialStateProperty.all(Color(0xff22ADCC))),
-                    onPressed: _checkOne == true ||
-                            _checkTwo == true ||
-                            _checkThree == true ||
-                            _checkFour == true ||
-                            _checkFive == true ||
-                            _checkSix == true ||
-                            _checkSeven ||
-                            _checkEight == true
+                    onPressed: (checkOne ||
+                            checkTwo ||
+                            checkThree ||
+                            checkFour ||
+                            checkFive ||
+                            checkSix ||
+                            checkSevne ||
+                            checkEight)
                         ? () {
-                            if (_checkOne) {
-                              count += 10;
+                            if (checkOne) {
+                              context
+                                  .read(instanciaUsernameState.notifier)
+                                  .agregarPuntos = 10;
                             }
-                            if (_checkSix) {
-                              count += 10;
+                            if (checkSix) {
+                              context
+                                  .read(instanciaUsernameState.notifier)
+                                  .agregarPuntos = 10;
                             }
-                            if (_checkSeven) {
-                              count += 10;
+                            if (checkSevne) {
+                              context
+                                  .read(instanciaUsernameState.notifier)
+                                  .agregarPuntos = 10;
                             }
-                            setState(() {});
-                            user.countpuntos = user.getPuntos + count;
+                            context.read(checkOneState.notifier).setCheckOne =
+                                false;
+                            context.read(checkTwoState.notifier).setCheckOne =
+                                false;
+                            context.read(checkThreeState.notifier).setCheckOne =
+                                false;
+                            context.read(checkFourState.notifier).setCheckOne =
+                                false;
+                            context.read(checkFiveState.notifier).setCheckOne =
+                                false;
+                            context.read(checkSixState.notifier).setCheckOne =
+                                false;
+                            context.read(checkSevenState.notifier).setCheckOne =
+                                false;
+                            context.read(checkEightState.notifier).setCheckOne =
+                                false;
                             Navigator.popAndPushNamed(
-                                context, 'viewPagePasoFour',
-                                arguments: user);
+                                context, 'viewPagePasoFour');
                           }
                         : null,
                     child: Text(
@@ -207,10 +166,102 @@ class _ViewPagePasoThreeState extends State<ViewPagePasoThree> {
         backgroundColor: Color(0xff22ADCC),
         onPressed: () {},
         child: Text(
-          user.getPuntos.toString(),
+          user.puntosValue.toString(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
     );
+  }
+
+  List<Widget> listItemCheck(
+      final checkOne,
+      final checkTwo,
+      final checkThree,
+      final checkFour,
+      final checkFive,
+      final checkSix,
+      final checkSevne,
+      final checkEight,
+      BuildContext context) {
+    List<Widget> item = [];
+    for (var i = 0; i < items.length; i++) {
+      Widget widget;
+      switch (i) {
+        case 0:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkOne,
+              onChanged: (value) {
+                context.read(checkOneState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 1:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkTwo,
+              onChanged: (value) {
+                context.read(checkTwoState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 2:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkThree,
+              onChanged: (value) {
+                context.read(checkThreeState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 3:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkFour,
+              onChanged: (value) {
+                context.read(checkFourState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 4:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkFive,
+              onChanged: (value) {
+                context.read(checkFiveState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 5:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkSix,
+              onChanged: (value) {
+                context.read(checkSixState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 6:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkSevne,
+              onChanged: (value) {
+                context.read(checkSevenState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        case 7:
+          widget = CheckboxListTile(
+              title: Text(items[i]),
+              value: checkEight,
+              onChanged: (value) {
+                context.read(checkEightState.notifier).setCheckOne = value!;
+              });
+          item.add(widget);
+          break;
+        default:
+      }
+    }
+    return item;
   }
 }

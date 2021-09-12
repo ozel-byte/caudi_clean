@@ -1,13 +1,16 @@
+import 'package:caudiclean/main.dart';
 import 'package:caudiclean/src/model/username.dart';
+import 'package:caudiclean/src/states/instanciaUsername.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ViewPageFinal extends StatelessWidget {
+class ViewPageFinal extends ConsumerWidget {
   const ViewPageFinal({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final size = MediaQuery.of(context).size;
-    Username user = ModalRoute.of(context)!.settings.arguments as Username;
+    InstanciaUsernameState user = watch(instanciaUsernameState.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -17,17 +20,17 @@ class ViewPageFinal extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Ing " + user.getUsername,
+                "Ing " + user.usernameValue,
                 style: TextStyle(color: Colors.black),
               ),
               SizedBox(
                 width: 10,
               ),
               CircleAvatar(
-                backgroundColor: user.getGenero == "F"
+                backgroundColor: user.generoValue == "F"
                     ? Colors.amber[100]
                     : Colors.blue[100],
-                backgroundImage: AssetImage(user.getAvatar),
+                backgroundImage: AssetImage(user.avatarValue),
               ),
               SizedBox(
                 width: 10,
@@ -60,7 +63,7 @@ class ViewPageFinal extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    user.getPuntos.toString(),
+                    user.puntosValue.toString(),
                     style: TextStyle(
                         fontSize: 60,
                         fontWeight: FontWeight.bold,
@@ -102,6 +105,19 @@ class ViewPageFinal extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
                   onPressed: () {
+                    context
+                        .read(instanciaUsernameState.notifier)
+                        .agregarAvatar = "";
+                    context.read(instanciaUsernameState.notifier).agregarGnero =
+                        "";
+                    context
+                        .read(instanciaUsernameState.notifier)
+                        .agregarUsername = "";
+
+                    final punt = user.puntosValue;
+                    context
+                        .read(instanciaUsernameState.notifier)
+                        .agregarPuntos = -punt;
                     Navigator.popAndPushNamed(context, '/');
                   },
                   child: Text(

@@ -6,19 +6,28 @@ class Username {
   // ignore: deprecated_member_use
   List<String> tareasTermiandas = [];
 
-  Username(String _username, int _puntos, String _avatar, String _genero) {
-    username = _username;
-    puntos = _puntos;
-    avatar = _avatar;
-    genero = _genero;
-  }
-
   get getUsername {
     return username;
   }
 
+  set setUsername(String name) {
+    username = name;
+  }
+
+  set setAvatar(String _avatar) {
+    avatar = _avatar;
+  }
+
+  set setGenero(String _genero) {
+    genero = _genero;
+  }
+
   set countpuntos(int _puntos) {
-    puntos = _puntos;
+    puntos += _puntos;
+  }
+
+  int getPuntosRiver() {
+    return getPuntos;
   }
 
   int get getPuntos {

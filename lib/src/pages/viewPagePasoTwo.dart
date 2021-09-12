@@ -1,24 +1,22 @@
+import 'package:caudiclean/main.dart';
 import 'package:caudiclean/src/model/username.dart';
+import 'package:caudiclean/src/states/instanciaUsername.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ViewPagePasoTwo extends StatefulWidget {
-  const ViewPagePasoTwo({Key? key}) : super(key: key);
-
+class ViewPagePasoTwo extends ConsumerWidget {
+  final items = [
+    "Licuadora",
+    "Tamiz",
+    "Redes finas",
+    "Redes gruesas",
+    "Decantador"
+  ];
   @override
-  _ViewPagePasoTwoState createState() => _ViewPagePasoTwoState();
-}
-
-bool? _check = false;
-bool? _checkTwo = false;
-bool? _checkThree = false;
-bool? _checkFour = false;
-bool? _checkFive = false;
-
-class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final size = MediaQuery.of(context).size;
-    Username user = ModalRoute.of(context)!.settings.arguments as Username;
+    InstanciaUsernameState user = watch(instanciaUsernameState.notifier);
+    final checkPasoTwo = watch(checkPasoTwoValueState);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -26,17 +24,17 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
           Row(
             children: [
               Text(
-                "Ing " + user.getUsername,
+                "Ing " + user.usernameValue,
                 style: TextStyle(color: Colors.black),
               ),
               SizedBox(
                 width: 10,
               ),
               CircleAvatar(
-                backgroundColor: user.getGenero == "F"
+                backgroundColor: user.generoValue == "F"
                     ? Colors.amber[100]
                     : Colors.blue[100],
-                backgroundImage: AssetImage(user.getAvatar),
+                backgroundImage: AssetImage(user.avatarValue),
               ),
               SizedBox(
                 width: 10,
@@ -77,55 +75,8 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                 width: size.width * 1,
                 height: size.height * 0.4,
                 child: ListView(
-                  padding: EdgeInsets.only(top: 20),
-                  children: [
-                    CheckboxListTile(
-                      title: Text('Licuadora'),
-                      value: _check,
-                      onChanged: (select) {
-                        _check = select;
-                        setState(() {});
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                    CheckboxListTile(
-                      title: Text('Tamiz'),
-                      value: _checkTwo,
-                      onChanged: (select) {
-                        _checkTwo = select;
-                        setState(() {});
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                    CheckboxListTile(
-                      title: Text('Redes finas'),
-                      value: _checkThree,
-                      onChanged: (select) {
-                        _checkThree = select;
-                        setState(() {});
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                    CheckboxListTile(
-                      title: Text('Redes gruesas'),
-                      value: _checkFour,
-                      onChanged: (select) {
-                        _checkFour = select;
-                        setState(() {});
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                    CheckboxListTile(
-                      title: Text('Decantador'),
-                      value: _checkFive,
-                      onChanged: (select) {
-                        _checkFive = select;
-                        setState(() {});
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                  ],
-                ),
+                    padding: EdgeInsets.only(top: 20),
+                    children: listaRadioButton(checkPasoTwo, context)),
               ),
               SizedBox(
                 height: 20,
@@ -136,20 +87,18 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                           EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: _check == true ||
-                          _checkTwo == true ||
-                          _checkThree == true ||
-                          _checkFour == true ||
-                          _checkFive == true
-                      ? () {
-                          if (_checkFive == true) {
-                            user.countpuntos = user.getPuntos + 10;
-                          }
-                          Navigator.popAndPushNamed(
-                              context, 'viewPagePasoThree',
-                              arguments: user);
-                        }
-                      : null,
+                  onPressed: () {
+                    print(checkPasoTwo);
+                    if (checkPasoTwo == 5) {
+                      context
+                          .read(instanciaUsernameState.notifier)
+                          .agregarPuntos = 10;
+                    }
+                    context
+                        .read(checkPasoTwoValueState.notifier)
+                        .agregarRadiocheckValue = -1;
+                    Navigator.popAndPushNamed(context, 'viewPagePasoThree');
+                  },
                   child: Text(
                     "Continuar",
                     style: TextStyle(color: Colors.white),
@@ -162,10 +111,32 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
         backgroundColor: Color(0xff22ADCC),
         onPressed: () {},
         child: Text(
-          user.getPuntos.toString(),
+          user.puntosValue.toString(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
     );
+  }
+
+  List<Widget> listaRadioButton(int checkPasoTwoValue, BuildContext context) {
+    List<Widget> item = [];
+
+    for (var i = 0; i < items.length; i++) {
+      final widtgetTemporal = ListTile(
+        title: Text(items[i]),
+        leading: Radio(
+          value: (i + 1),
+          activeColor: Colors.blue,
+          groupValue: checkPasoTwoValue,
+          onChanged: (select) {
+            context
+                .read(checkPasoTwoValueState.notifier)
+                .agregarRadiocheckValue = int.parse(select.toString());
+          },
+        ),
+      );
+      item.add(widtgetTemporal);
+    }
+    return item;
   }
 }

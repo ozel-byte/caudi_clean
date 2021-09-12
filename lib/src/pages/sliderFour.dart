@@ -1,11 +1,15 @@
+import 'package:caudiclean/main.dart';
+import 'package:caudiclean/src/states/instanciaUsername.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SliderFour extends StatelessWidget {
+class SliderFour extends ConsumerWidget {
   const SliderFour({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     Size size = MediaQuery.of(context).size;
+    InstanciaUsernameState user = watch(instanciaUsernameState.notifier);
     return Scaffold(
       appBar: AppBar(
         title: Text("Paso 1"),

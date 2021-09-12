@@ -66,24 +66,16 @@ class _SliderOneState extends State<SliderOne> {
             height: 10,
           ),
           Text(
-            "Agua Tratada y Limpia",
+            "Tratamiento de aguas residuales facil y divertido.",
             style: TextStyle(color: Color(0xff22ADCC)),
           ),
           SizedBox(
             height: 10,
           ),
           Text(
-            "Proceso de tratamiento de aguas residuales fácil y",
+            "!Aprende jugando, diviertete estudiando!",
             style: _styleDescription,
           ),
-          Text(
-            "sencillamente. ¡No esperes más!",
-            style: _styleDescription,
-          ),
-          Text(
-            "¡Aprende jugando, diviértete estudiando!",
-            style: _styleDescription,
-          )
         ],
       ),
     );
