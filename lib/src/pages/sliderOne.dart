@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SliderOne extends StatefulWidget {
   @override
@@ -110,7 +111,9 @@ class _SliderOneState extends State<SliderOne> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _ventanaInstruciones(context, size);
+                },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
@@ -192,5 +195,66 @@ class _SliderOneState extends State<SliderOne> {
         ],
       ),
     );
+  }
+
+  void _launchURL(_url) async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
+
+  Future<void> _ventanaInstruciones(BuildContext context, Size size) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("INSTITUCIONES DEL AGUA"),
+            content: Container(
+              width: size.width * 1,
+              height: size.height * 0.2,
+              child: ListView(
+                children: [
+                  ListTile(
+                      leading: Text("1"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL("https://www.gob.mx/conagua"),
+                          child: Text(
+                            "CONAGUA",
+                            style: TextStyle(color: Colors.blue),
+                          ))),
+                  ListTile(
+                      leading: Text("2"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL("https://www.gob.mx/imta"),
+                          child: Text("IMTA",
+                              style: TextStyle(color: Colors.blue)))),
+                  ListTile(
+                      leading: Text("3"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () =>
+                              _launchURL("https://www.gob.mx/semarnat"),
+                          child: Text("SEMARNAT",
+                              style: TextStyle(color: Colors.blue)))),
+                  ListTile(
+                      leading: Text("4"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL("http://amh.org.mx/"),
+                          child: Text("AMH",
+                              style: TextStyle(color: Colors.blue))))
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Aceptar'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }
