@@ -41,93 +41,104 @@ class ViewPagePasoFour extends ConsumerWidget {
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, 'viewPagePasoThree');
+          },
+        ),*/
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: [
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Tratamiento terciario.",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              Text(
-                "Ordena los procesos antes de que termine el tratamiento secundario.",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
-                    "Ordena las Tarjetas",
-                    style: TextStyle(fontSize: 18),
+                    "Tratamiento terciario.",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  ),
+                  Text(
+                    "Ordena los procesos antes de que termine",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Text(
+                    "el tratamiento secundario.",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Ordena las Tarjetas",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Maximo 30 puntos",
+                        style: TextStyle(color: Colors.red[200]),
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    width: 10,
+                    height: 20,
                   ),
-                  Text(
-                    "Maximo 30 puntos",
-                    style: TextStyle(color: Colors.red[200]),
-                  ),
+                  dragabbleItemList(size, dragabbleItem, context),
+                  TextButton(
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(
+                                  horizontal: 100, vertical: 20)),
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xff22ADCC))),
+                      onPressed: () {
+                        if (dragabbleItem[0] == "Decantación") {
+                          context
+                              .read(instanciaUsernameState.notifier)
+                              .agregarPuntos = 10;
+                        }
+                        if (dragabbleItem[1] == "Filtración") {
+                          context
+                              .read(instanciaUsernameState.notifier)
+                              .agregarPuntos = 10;
+                        }
+                        if (dragabbleItem[2] == "Desinfección") {
+                          context
+                              .read(instanciaUsernameState.notifier)
+                              .agregarPuntos = 10;
+                        }
+
+                        Navigator.popAndPushNamed(context, 'viewPageFinal');
+                      },
+                      // onPressed: () {
+                      //   if (items[0] == "Decantación") {
+                      //     count += 10;
+                      //   }
+                      //   if (items[1] == "Filtración") {
+                      //     count += 10;
+                      //   }
+                      //   if (items[2] == "Desinfección") {
+                      //     count += 10;
+                      //   }
+                      //   user.countpuntos = user.getPuntos + count;
+                      //   setState(() {});
+                      //   Navigator.popAndPushNamed(context, 'viewPageFinal',
+                      //       arguments: user);
+                      // },
+                      child: Text(
+                        "Continuar",
+                        style: TextStyle(color: Colors.white),
+                      ))
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              dragabbleItemList(size, dragabbleItem, context),
-              TextButton(
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(horizontal: 100, vertical: 20)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {
-                    if (dragabbleItem[0] == "Decantación") {
-                      context
-                          .read(instanciaUsernameState.notifier)
-                          .agregarPuntos = 10;
-                    }
-                    if (dragabbleItem[1] == "Filtración") {
-                      context
-                          .read(instanciaUsernameState.notifier)
-                          .agregarPuntos = 10;
-                    }
-                    if (dragabbleItem[2] == "Desinfección") {
-                      context
-                          .read(instanciaUsernameState.notifier)
-                          .agregarPuntos = 10;
-                    }
-
-                    Navigator.popAndPushNamed(context, 'viewPageFinal');
-                  },
-                  // onPressed: () {
-                  //   if (items[0] == "Decantación") {
-                  //     count += 10;
-                  //   }
-                  //   if (items[1] == "Filtración") {
-                  //     count += 10;
-                  //   }
-                  //   if (items[2] == "Desinfección") {
-                  //     count += 10;
-                  //   }
-                  //   user.countpuntos = user.getPuntos + count;
-                  //   setState(() {});
-                  //   Navigator.popAndPushNamed(context, 'viewPageFinal',
-                  //       arguments: user);
-                  // },
-                  child: Text(
-                    "Continuar",
-                    style: TextStyle(color: Colors.white),
-                  ))
             ],
-          ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

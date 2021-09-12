@@ -58,10 +58,12 @@ class ViewPagePasoThree extends ConsumerWidget {
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, 'viewPagePasoTwo');
+          },
+        ),*/
       ),
       body: SingleChildScrollView(
         child: Row(

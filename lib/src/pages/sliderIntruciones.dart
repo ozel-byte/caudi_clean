@@ -73,7 +73,7 @@ class InstruccionesPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                  "aguas con impurezas procedentes de vertidos de diferentes orígenes, domésticos, industriales, agrícolas y pecuarios"),
+                                  "Aguas con impurezas procedentes de vertidos de diferentes orígenes, domésticos, industriales, agrícolas y pecuarios"),
                             )
                           ],
                         ),
@@ -184,7 +184,7 @@ class InstruccionesPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                  "REMOCIÓN DE MATERIALES COLOIDALES Y DISUELOS, UTILIZANDO MICROORGANISMOS."),
+                                  "Remoción de materiales coloidales y disueltos, utilizando  microorganismos."),
                             )
                           ],
                         ),
@@ -221,7 +221,7 @@ class InstruccionesPage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                  "ELIMINACIÓN DE MATERIALES DISUELTOS QUE INCLUYEN GASES, SUSTANCIAS ORGÁNICAS NATURALES Y SINTÉTICAS"),
+                                  "Eliminación de materiales disueltos que incluyen gases, sustancias orgánicas naturales y sintéticas."),
                             )
                           ],
                         ),

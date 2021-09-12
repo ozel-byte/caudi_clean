@@ -26,7 +26,9 @@ class SLiderFive extends ConsumerWidget {
           )
         ],
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.popAndPushNamed(context, 'slierThree');
+            },
             icon: Icon(
               Icons.arrow_back,
               color: Colors.black,

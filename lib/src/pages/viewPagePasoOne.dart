@@ -43,7 +43,9 @@ class ViewPagePasoOne extends ConsumerWidget {
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.popAndPushNamed(context, 'sliderTwo');
+            },
           ),
         ),
         body: listaExpanded(size, dragabbleItem, context, user));

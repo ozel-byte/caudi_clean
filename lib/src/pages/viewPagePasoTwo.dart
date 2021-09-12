@@ -47,12 +47,12 @@ class ViewPagePasoTwo extends ConsumerWidget {
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
-        leading: IconButton(
+        /*leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.popAndPushNamed(context, 'viewPagePasoThree');
+            Navigator.popAndPushNamed(context, 'viewPagePasoOne');
           },
-        ),
+        ),*/
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
