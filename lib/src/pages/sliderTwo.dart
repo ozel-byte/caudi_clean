@@ -31,7 +31,7 @@ class SliderTwoV2 extends ConsumerWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/');
+            Navigator.popAndPushNamed(context, 'instrucciones');
           },
         ),
       ),
@@ -48,7 +48,7 @@ class SliderTwoV2 extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("desliza de deracha a izquierda  y seleciona el avatar"),
+              Text("desliza de derecha a izquierda  y selecciona el avatar"),
             ],
           ),
           Container(

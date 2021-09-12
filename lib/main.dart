@@ -1,4 +1,5 @@
 import 'package:caudiclean/src/model/username.dart';
+import 'package:caudiclean/src/pages/sliderIntruciones.dart';
 import 'package:caudiclean/src/pages/viewPageFinal.dart';
 import 'package:caudiclean/src/pages/viewPagePasoFour.dart';
 import 'package:caudiclean/src/pages/viewPagePasoOne.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => SliderOne(),
+        'instrucciones': (BuildContext context) => InstruccionesPage(),
         'sliderTwo': (BuildContext context) => SliderTwoV2(title: "SliderTwo"),
         'slierThree': (BuildContext context) => SLiderThree(),
         'slierFour': (BuildContext context) => SliderFour(),

@@ -55,11 +55,11 @@ class ViewPagePasoFour extends ConsumerWidget {
                 height: 10,
               ),
               Text(
-                "Tratamiento primario",
+                "Tratamiento terciario.",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Text(
-                "¿Dónde se lleva a cabo?",
+                "Ordena los procesos antes de que termine el tratamiento secundario.",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Row(
