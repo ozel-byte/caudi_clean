@@ -69,6 +69,10 @@ class _ViewPagePasoTwoState extends State<ViewPagePasoTwo> {
                 "¿Dónde se lleva a cabo?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
+              Text(
+                "Maximo 10 puntos",
+                style: TextStyle(color: Colors.red[200]),
+              ),
               Container(
                 width: size.width * 1,
                 height: size.height * 0.4,

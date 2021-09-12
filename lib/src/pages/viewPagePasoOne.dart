@@ -80,6 +80,10 @@ class _ViewPagePasoOneState extends State<ViewPagePasoOne> {
             "¿Qué va primero?",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
+          Text(
+            "Maximo 40 puntos",
+            style: TextStyle(color: Colors.red[200]),
+          ),
           SizedBox(height: 20),
           Container(
             width: size.width * 1,

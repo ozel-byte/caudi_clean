@@ -9,6 +9,7 @@ class ViewPagePasoFour extends StatefulWidget {
 }
 
 List<String> items = ["Filtración", "Desinfección", "Decantación"];
+int selectitem = 0;
 
 class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
   @override
@@ -67,30 +68,76 @@ class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
                 "¿Dónde se lleva a cabo?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
+              Text(
+                "Maximo 30 puntos",
+                style: TextStyle(color: Colors.red[200]),
+              ),
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: size.width * 0.8,
-                height: size.height * 0.5,
-                child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Container(
-                          width: size.width * 0.8,
-                          height: size.height * 0.1,
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.mood_rounded),
-                              Text(items[index]),
-                            ],
-                          ))),
-                    );
-                  },
-                ),
+              DragTarget(
+                builder: (
+                  BuildContext context,
+                  List<dynamic> accepted,
+                  List<dynamic> rejected,
+                ) {
+                  return Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.5,
+                    child: ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return Draggable<String>(
+                          data: items[index] + "." + index.toString(),
+                          feedback: Card(
+                            child: Container(
+                                width: size.width * 0.8,
+                                height: size.height * 0.1,
+                                child: Center(
+                                    child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(Icons.mood_rounded),
+                                    Text(items[index]),
+                                  ],
+                                ))),
+                          ),
+                          child: Card(
+                            child: Container(
+                                width: size.width * 0.8,
+                                height: size.height * 0.1,
+                                child: Center(
+                                    child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(Icons.mood_rounded),
+                                    Text(items[index]),
+                                  ],
+                                ))),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+                onAccept: (String data) {
+                  final valor = data.split(".");
+                  print(valor[0]);
+                  print(valor[1]);
+
+                  List<String> itemnew = [];
+                  itemnew.add(valor[0]);
+                  print(valor[1]);
+                  items.removeAt(int.parse(valor[1]));
+                  for (var item in items) {
+                    itemnew.add(item);
+                  }
+                  items = itemnew;
+                  print(items);
+                  setState(() {});
+                },
               ),
               TextButton(
                   style: ButtonStyle(
@@ -109,6 +156,14 @@ class _ViewPagePasoFourState extends State<ViewPagePasoFour> {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff22ADCC),
+        onPressed: () {},
+        child: Text(
+          user.getPuntos.toString(),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }
