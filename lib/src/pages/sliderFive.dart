@@ -1,3 +1,4 @@
+import 'package:caudiclean/src/model/username.dart';
 import 'package:flutter/material.dart';
 
 class SLiderFive extends StatelessWidget {
@@ -5,9 +6,32 @@ class SLiderFive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Username user = ModalRoute.of(context)!.settings.arguments as Username;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Hola paps"),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: [
+          CircleAvatar(
+            backgroundColor:
+                user.getGenero == "F" ? Colors.amber[100] : Colors.blue[100],
+            backgroundImage: AssetImage(user.getAvatar),
+          ),
+          SizedBox(
+            width: 10,
+          )
+        ],
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
+        title: Text(
+          "Hola de nuevo " + user.getUsername,
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Column(
         children: [
@@ -129,12 +153,13 @@ class SLiderFive extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Navigator.popAndPushNamed(context, "sliderSix");
+                          Navigator.popAndPushNamed(context, "sliderSix",
+                              arguments: user);
                         },
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(
-                              EdgeInsets.only(
-                                  left: 50, right: 50, top: 5, bottom: 5),
+                              EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 100),
                             ),
                             backgroundColor:
                                 MaterialStateProperty.all(Color(0xff3dbfe5))),
@@ -147,7 +172,7 @@ class SLiderFive extends StatelessWidget {
                                   fontSize: 19, color: Color(0xffffffff)),
                             )
                           ],
-                        ))
+                        )),
                   ],
                 )),
           ])

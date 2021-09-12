@@ -1,3 +1,4 @@
+import 'package:caudiclean/src/model/username.dart';
 import 'package:flutter/material.dart';
 
 class SliderSix extends StatelessWidget {
@@ -5,6 +6,7 @@ class SliderSix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Username user = ModalRoute.of(context)!.settings.arguments as Username;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +47,10 @@ class SliderSix extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, 'viewPagePasoOne',
+                              arguments: user);
+                        },
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(
                               EdgeInsets.only(

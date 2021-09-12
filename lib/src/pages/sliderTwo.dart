@@ -1,3 +1,4 @@
+import 'package:caudiclean/src/model/username.dart';
 import 'package:flutter/material.dart';
 
 class SliderTwo extends StatefulWidget {
@@ -5,6 +6,8 @@ class SliderTwo extends StatefulWidget {
   _SliderTwoState createState() => _SliderTwoState();
 }
 
+TextEditingController _controller = TextEditingController();
+String username = "";
 int select = 0;
 Icon iconInicio = Icon(Icons.arrow_forward);
 
@@ -84,6 +87,12 @@ class _SliderTwoState extends State<SliderTwo> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextField(
+                controller: _controller,
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey)),
@@ -119,9 +128,18 @@ class _SliderTwoState extends State<SliderTwo> {
                           EdgeInsets.symmetric(vertical: 15)),
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff22ADCC))),
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, "slierThree");
-                  },
+                  onPressed: username.isEmpty == true || select == 0
+                      ? null
+                      : () {
+                          String avatar = select == 1
+                              ? "assets/female-mechanic.png"
+                              : "assets/male-mechanic.png";
+                          String genero = select == 1 ? "F" : "M";
+                          Username user =
+                              new Username(username, 0, avatar, genero);
+                          Navigator.popAndPushNamed(context, "slierThree",
+                              arguments: user);
+                        },
                   child: Text(
                     "Siguiente",
                     style: TextStyle(color: Colors.white),

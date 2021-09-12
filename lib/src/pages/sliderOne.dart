@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+import 'package:animate_do/animate_do.dart';
 
 class SliderOne extends StatefulWidget {
   @override
@@ -41,21 +42,26 @@ class _SliderOneState extends State<SliderOne> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Bienvenido",
-            style: TextStyle(
-                color: Color(0xff2CBCF9),
-                fontSize: 30,
-                fontWeight: FontWeight.bold),
+          BounceInDown(
+            child: Text(
+              "Bienvenido",
+              style: TextStyle(
+                  color: Color(0xff2CBCF9),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          Text("Caudi clean",
-              style: TextStyle(
-                  fontSize: 40,
-                  foreground: Paint()..shader = _gradientLogo,
-                  fontWeight: FontWeight.bold)),
+          FadeIn(
+            duration: Duration(milliseconds: 2000),
+            child: Text("Caudi clean",
+                style: TextStyle(
+                    fontSize: 40,
+                    foreground: Paint()..shader = _gradientLogo,
+                    fontWeight: FontWeight.bold)),
+          ),
           SizedBox(
             height: 10,
           ),
@@ -129,9 +135,7 @@ class _SliderOneState extends State<SliderOne> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, 'slierThree');
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
@@ -148,9 +152,7 @@ class _SliderOneState extends State<SliderOne> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, 'slierFive');
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
@@ -186,7 +188,7 @@ class _SliderOneState extends State<SliderOne> {
                   [Colors.blue, Color(0xff2BA5C0)],
                   [Colors.blue, Color(0xff2FB0CC)],
                   [Colors.blue, Color(0xff048cc0)],
-                  [Colors.blue, Color(0xff445cbb)]
+                  [Colors.blue, Color(0xff32ACD8)]
                 ],
                 durations: [5000, 59440, 50800, 4000],
                 heightPercentages: [0.20, 0.23, 0.25, 0.30],
