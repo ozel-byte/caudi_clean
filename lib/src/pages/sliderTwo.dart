@@ -45,6 +45,12 @@ class SliderTwoV2 extends ConsumerWidget {
               Icon(Icons.arrow_forward),
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("desliza de deracha a izquierda  y seleciona el avatar"),
+            ],
+          ),
           Container(
             width: size.width * 1,
             height: size.height * 0.2,
