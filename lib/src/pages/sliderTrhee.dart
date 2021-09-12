@@ -15,9 +15,11 @@ class SLiderThree extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back_rounded,
-          color: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, 'sliderTwo');
+          },
         ),
         elevation: 0.0,
         actions: [
