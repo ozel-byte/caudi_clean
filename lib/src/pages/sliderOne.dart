@@ -191,7 +191,7 @@ class _SliderOneState extends State<SliderOne> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("INSTITUCIONES DEL AGUA"),
+            title: Text("Marco Normativo"),
             content: Container(
               width: size.width * 1,
               height: size.height * 0.2,
