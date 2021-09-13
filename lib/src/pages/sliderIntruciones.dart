@@ -41,6 +41,7 @@ class _InstruccionesPageState extends State<InstruccionesPage> {
         actions: [
           IconButton(
               onPressed: () {
+                _controller.pause();
                 Navigator.popAndPushNamed(context, 'sliderTwo');
               },
               icon: Icon(
