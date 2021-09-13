@@ -227,7 +227,7 @@ class _InstruccionesPageState extends State<InstruccionesPage> {
                                           padding: const EdgeInsets.only(
                                               left: 10, top: 10),
                                           child: Text(
-                                            "TRATAMIENTO SECUNDARIO.",
+                                            "Tratamiento secundario.",
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
@@ -267,7 +267,7 @@ class _InstruccionesPageState extends State<InstruccionesPage> {
                                           padding: const EdgeInsets.only(
                                               left: 10, top: 10),
                                           child: Text(
-                                            "TRATAMIENTO TERCIARIO.",
+                                            "Tratamiento terciario.",
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
