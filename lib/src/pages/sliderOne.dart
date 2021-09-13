@@ -112,7 +112,7 @@ class _SliderOneState extends State<SliderOne> {
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
                 onPressed: () {
-                  _ventanaInstruciones(context, size);
+                  _ventanaInstruciones2(context, size);
                 },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
@@ -130,7 +130,9 @@ class _SliderOneState extends State<SliderOne> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _ventanaInstruciones(context, size);
+                },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         EdgeInsets.symmetric(vertical: 15)),
@@ -140,27 +142,10 @@ class _SliderOneState extends State<SliderOne> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.link),
-                    Text(" Marco formativo"),
+                    Text(" Marco normativo"),
                   ],
                 )),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-            child: TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 15)),
-                    backgroundColor:
-                        MaterialStateProperty.all(Color(0xffE8E6E6))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.bookmarks),
-                    Text(" Glosario de tratamiento"),
-                  ],
-                )),
-          )
         ],
       ),
     );
@@ -202,6 +187,74 @@ class _SliderOneState extends State<SliderOne> {
       : throw 'Could not launch $_url';
 
   Future<void> _ventanaInstruciones(BuildContext context, Size size) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("INSTITUCIONES DEL AGUA"),
+            content: Container(
+              width: size.width * 1,
+              height: size.height * 0.2,
+              child: ListView(
+                children: [
+                  ListTile(
+                      leading: Text("1"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL(
+                              "http://www.diputados.gob.mx/LeyesBiblio/pdf/148_180121.pdf"),
+                          child: Text(
+                            "LGEEPA",
+                            style: TextStyle(color: Colors.blue),
+                          ))),
+                  ListTile(
+                      leading: Text("2"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL(
+                              "http://www.diputados.gob.mx/LeyesBiblio/pdf/16_060120.pdf"),
+                          child: Text("Ley de aguas nacionales.",
+                              style: TextStyle(color: Colors.blue)))),
+                  ListTile(
+                      leading: Text("3"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL(
+                              "https://www.dof.gob.mx/nota_detalle.php?codigo=5510140&fecha=05/01/2018"),
+                          child: Text("NOM-001-SEMARNAT-1996",
+                              style: TextStyle(color: Colors.blue)))),
+                  ListTile(
+                      leading: Text("4"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL(
+                              "https://www.profepa.gob.mx/innovaportal/file/3295/1/nom-002-semarnat-1996.pdf"),
+                          child: Text("NOM-002-SEMARNAT-1996",
+                              style: TextStyle(color: Colors.blue)))),
+                  ListTile(
+                      leading: Text("4"),
+                      trailing: Icon(Icons.link),
+                      title: GestureDetector(
+                          onTap: () => _launchURL(
+                              "https://www.profepa.gob.mx/innovaportal/file/3297/1/nom-003-semarnat-1997.pdf"),
+                          child: Text("NOM-003-SEMARNAT-1997",
+                              style: TextStyle(color: Colors.blue))))
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Aceptar'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  Future<void> _ventanaInstruciones2(BuildContext context, Size size) async {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
