@@ -95,9 +95,18 @@ class SLiderFive extends ConsumerWidget {
             children: [
               Container(
                 padding: EdgeInsets.only(left: 20, top: 12, right: 10),
-                child: Text(
-                  "Algunos límites permisibles en promedio mensual.",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Algunos límites permisibles en",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    Text("promedio mensual.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16))
+                  ],
                 ),
               )
             ],

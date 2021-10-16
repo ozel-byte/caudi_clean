@@ -14,7 +14,6 @@ class _InstruccionesPageState extends State<InstruccionesPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = VideoPlayerController.network(
         "https://res.cloudinary.com/dv5fwf13g/video/upload/v1631495123/v_tzlv0j.mp4")
